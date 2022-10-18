@@ -1,0 +1,96 @@
+Sub Code()
+
+Dim arr1()
+Dim arr2()
+
+For i = 4 To 211
+
+arr2 = Range("N" & 3, "S" & 3)
+err_1 = WorksheetFunction.Max(arr2)
+
+If Tabelle2.Range("G" & i) > err_1 Then
+Range("N" & i, "V" & i) = "N/A"
+a:
+
+Else
+
+Tabelle2.Range("W" & i) = Tabelle2.Range("G" & i)
+Tabelle2.Range("X" & i) = Tabelle2.Range("D" & i)
+
+If Tabelle2.Range("G" & i) > Tabelle2.Range("N" & 3) Then
+Tabelle2.Range("N" & i) = "Not long enough"
+Else
+result1 = Tabelle2.Range("N" & 3) Mod Tabelle2.Range("G" & i)
+Tabelle2.Range("N" & i) = result1
+End If
+
+
+If Tabelle2.Range("G" & i) > Tabelle2.Range("O" & 3) Then
+Tabelle2.Range("O" & i) = "Not long enough"
+Else
+result1 = Tabelle2.Range("O" & 3) Mod Tabelle2.Range("G" & i)
+Tabelle2.Range("O" & i) = result1
+End If
+
+If Tabelle2.Range("G" & i) > Tabelle2.Range("P" & 3) Then
+Tabelle2.Range("P" & i) = "Not long enough"
+Else
+result1 = Tabelle2.Range("P" & 3) Mod Tabelle2.Range("G" & i)
+Tabelle2.Range("P" & i) = result1
+End If
+
+If Tabelle2.Range("G" & i) > Tabelle2.Range("Q" & 3) Then
+Tabelle2.Range("Q" & i) = "Not long enough"
+Else
+result1 = Tabelle2.Range("Q" & 3) Mod Tabelle2.Range("G" & i)
+Tabelle2.Range("Q" & i) = result1
+End If
+
+If Tabelle2.Range("G" & i) > Tabelle2.Range("R" & 3) Then
+Tabelle2.Range("R" & i) = "Not long enough"
+Else
+result1 = Tabelle2.Range("R" & 3) Mod Tabelle2.Range("G" & i)
+Tabelle2.Range("R" & i) = result1
+End If
+
+If Tabelle2.Range("G" & i) > Tabelle2.Range("S" & 3) Then
+Tabelle2.Range("S" & i) = "Not long enough"
+Else
+result1 = Tabelle2.Range("S" & 3) Mod Tabelle2.Range("G" & i)
+Tabelle2.Range("S" & i) = result1
+End If
+ 
+arr1 = Range("N" & i, "S" & i)
+off_c1 = WorksheetFunction.Min(arr1)
+
+Tabelle2.Range("T" & i) = off_c1
+
+inde1 = Application.Match(off_c1, arr1, 0)
+order1 = arr2(1, inde1)
+
+Tabelle2.Range("U" & i) = order1
+
+order2 = (Tabelle2.Range("G" & i) * Tabelle2.Range("D" & i)) / order1
+ttl_qt = Round(order2)
+If ttl_qt <= 0 Then
+Tabelle2.Range("V" & i) = 1
+
+Else
+Tabelle2.Range("V" & i) = ttl_qt
+End If
+
+
+For Each w In Range("N" & 3, "S" & 3)
+    If Tabelle2.Range("G" & i) * Tabelle2.Range("D" & i) < w Then
+    Tabelle2.Range("U" & i) = w
+    Exit For
+    End If
+Next
+
+End If
+Next
+
+
+
+End Sub
+
